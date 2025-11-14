@@ -140,7 +140,8 @@ split_factor_labels <- function(data, dictionary, variable, delim = "|") {
     data[!is.na(data[[variable]]), ],
     id_cols = c("subject_label", "event_sequence"),
     names_from = variable,
-    values_fill = 0
+    values_fill = 0,
+    values_fn = max
   )
 
   original_data <-
@@ -152,4 +153,21 @@ split_factor_labels <- function(data, dictionary, variable, delim = "|") {
     )
 
   return(original_data)
+}
+
+
+.clean_file_names <- function(files) {
+  patterns <- c(
+    "[0-9]{2}[A-Za-z]{3}[0-9]{4}.csv$",
+    "[0-9]{4}_[0-9]{2}_[0-9]{2}.csv$",
+    "_|_-_|__|___"
+  )
+  replacements <- c("\\1", "\\1", " ")
+  for (i in 1:length(patterns)) {
+    files <- gsub(pattern = patterns[i], replacement = replacements[i], files)
+    if (i == length(patterns)) {
+      files <- trimws(files)
+    }
+  }
+  return(files)
 }
