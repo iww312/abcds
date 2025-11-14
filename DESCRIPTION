@@ -19,6 +19,7 @@ Imports:
     magrittr,
     parallel,
     plyr,
+    readr,
     rlang,
     shiny,
     tibble,
