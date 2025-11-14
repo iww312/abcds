@@ -5,7 +5,7 @@
 \title{read_demographics}
 \usage{
 read_demographics(
-  directory,
+  directory = NULL,
   person = c("participants", "controls"),
   event_sequence = NULL,
   simplify = FALSE
