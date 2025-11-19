@@ -1,4 +1,4 @@
-data <- read.csv(file.choose(), stringsAsFactors = FALSE)
+data <- read_csv(file.choose())
 required_cols <- c("subject_label", "age_at_visit")
 missing_cols <- setdiff(required_cols, names(data))
 if (length(missing_cols) > 0) {
