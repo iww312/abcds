@@ -42,7 +42,7 @@ filter_data <- function(data, menu_func) {
     unique_vals <- unique(data[[selected_col]])
     cat("\n")
     cli::cat_line(paste0("Available values in '", selected_col, "':"))
-    print(head(unique_vals, 20))
+    print(utils::head(unique_vals, 20))
     if (length(unique_vals) > 20) {
       cat("... and", length(unique_vals) - 20, "more\n")
     }
@@ -186,7 +186,7 @@ launch_interactive_console <- function(data, horizontal_menus = TRUE) {
   repeat {
     cat("\n")
     cli::cat_line(cli::col_cyan("Current data preview:"))
-    print(head(current_data))
+    print(utils::head(current_data))
     cat("\n")
 
     main_choices <- c(
