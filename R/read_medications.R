@@ -1,4 +1,4 @@
-#' @title read_medications
+#' @title read_medications_old
 #' @description Reads the file containing the medication and health history data
 #'   from the directory for the participants and controls.
 #' @param directory A path name containing the downloaded ABC-DS data from the
@@ -15,15 +15,17 @@
 #'   medication data at a specific time point using `event_sequence`. When `categorize = TRUE`,
 #'   the function adds columns counting the number of medications in each category.
 #'   Multiple medications may be pipe-delimited (e.g., "6|9") in a single cell.
-#' @rdname read_medications
+#' @rdname read_medications_old
 #' @export
 
-read_medications <- function(
-  directory,
+read_medications_old <- function(
+  directory = NULL,
   person = c("participants", "controls"),
   event_sequence = NULL,
   categorize = FALSE
 ) {
+  directory <- check_abcds_directory(directory)
+
   if (length(person) == 1) {
     person <- match.arg(person)
   }
