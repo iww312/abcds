@@ -49,17 +49,17 @@ check_abcds_directory <- function(directory = NULL) {
   )
 
   if (directory == "") {
-    cli::cat_rule(center = "📦 Welcome to the ABCDS R Package!", width = 72)
+    cli::cat_rule(center = "Welcome to the ABCDS R Package!", width = 72)
 
     cli::cat_boxx(
       c(
-        "It looks like you haven’t set up your ABCDS data directory yet.",
+        "It looks like you have not set up your ABCDS data directory yet.",
         "",
         "This directory should point to the folder on your computer where the",
         "ABCDS LONI data are stored (for example: '~/ABCDS/data').",
         "",
-        "Once selected, we’ll save this path to your user environment so that",
-        "you don’t have to set it again each time you load the package."
+        "Once selected, we will save this path to your user environment so that",
+        "you do not have to set it again each time you load the package."
       ),
       padding = c(0, 1, 0, 1),
       border_style = "double",
@@ -73,7 +73,7 @@ check_abcds_directory <- function(directory = NULL) {
     )
     cli::cat_line()
     cli::cat_line(
-      "💡 You can change it anytime by re-running the same function."
+      "You can change it anytime by re-running the same function."
     )
     return(invisible(NULL))
   }
@@ -131,7 +131,7 @@ check_abcds_directory <- function(directory = NULL) {
 #'
 #' @note
 #' Expected LONI files are defined in the internal `loni_file_names` object.
-#' The function uses [cli] package for formatted console output.
+#' The function uses cli package for formatted console output.
 #'
 #' @seealso [check_abcds_directory()] to verify the configured directory
 #'
@@ -161,7 +161,7 @@ set_abcds_directory <- function(env_var_name = "ABCDS_LONI_DATA_DIRECTORY") {
 
     # Validate directory exists
     if (!dir.exists(directory)) {
-      cli::cli_alert_danger("That directory doesn’t exist. Please try again.")
+      cli::cli_alert_danger("That directory does not exist. Please try again.")
       next
     }
 

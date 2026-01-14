@@ -35,7 +35,7 @@ the change to take effect.
 }
 \note{
 Expected LONI files are defined in the internal \code{loni_file_names} object.
-The function uses \link{cli} package for formatted console output.
+The function uses cli package for formatted console output.
 }
 \examples{
 \dontrun{

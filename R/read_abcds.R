@@ -423,3 +423,34 @@ read_medications <- new_abcds_reader("Medications_Health_History_Worksheet")
 #' }
 
 read_neuro_exam <- new_abcds_reader("Physical_and_Neurological")
+
+
+#' Read anthropometric data
+#'
+#' Reads height and weight data from the physical exam data files from the ABCDS study
+#' and converts height and weight to metric before calculating and returning body mass index.
+#'
+#' @inheritParams read_demographics
+#'
+#' @return A tibble containing height, weight, and body mass index optionally merged with
+#'   demographics.
+#'
+#' @export
+#' @examples
+#' \dontrun{
+#' # Get height, weight, and body mass index data for participants
+#' anthro_data <- read_athropometrics()
+#' }
+
+read_athropometrics <- new_abcds_reader(
+  pattern = "Physical_and_Neurological",
+  .f = function(data) {
+    demovars <- c("age_at_event", "de_gender", "de_race", "de_ethnicity")
+    data <- tidyr::fill(data, ht, htu, .direction = "down")
+    data$ht <- ifelse(data$htu == 1, data$ht * 2.54, data$ht)
+    data$wt <- ifelse(data$wtu == 1, data$wt / 2.205, data$wt)
+    data$bmi <- data$wt / (data$ht / 100)^2
+    demovars <- demovars[demovars %in% names(data)]
+    data[, c("subject_label", "event_sequence", demovars, "ht", "wt", "bmi")]
+  }
+)
